@@ -44,7 +44,7 @@ contract SafeSingletonDeployerTest is Test {
     }
 
     function test_deploy_reverts() public {
-        vm.expectRevert(SafeSingletonDeployer.DeployFailed.selector);
+        vm.expectRevert();
         SafeSingletonDeployer.deploy({
             creationCode: type(MockReverting).creationCode,
             args: abi.encode(1),

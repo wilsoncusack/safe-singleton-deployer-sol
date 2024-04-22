@@ -23,7 +23,46 @@ library SafeSingletonDeployer {
         });
     }
 
-    function deploy(bytes memory creationCode, bytes memory args, bytes32 salt) public returns (address) {
+    function broadcastDeploy(address deployer, bytes memory creationCode, bytes memory args, bytes32 salt)
+        internal
+        returns (address)
+    {
+        VM.broadcast(deployer);
+        return _deploy(creationCode, args, salt);
+    }
+
+    function broadcastDeploy(address deployer, bytes memory creationCode, bytes32 salt) internal returns (address) {
+        VM.broadcast(deployer);
+        return _deploy(creationCode, "", salt);
+    }
+
+    function broadcastDeploy(uint256 deployerPrivateKey, bytes memory creationCode, bytes memory args, bytes32 salt)
+        internal
+        returns (address)
+    {
+        VM.broadcast(deployerPrivateKey);
+        return _deploy(creationCode, args, salt);
+    }
+
+    function broadcastDeploy(uint256 deployerPrivateKey, bytes memory creationCode, bytes32 salt)
+        internal
+        returns (address)
+    {
+        VM.broadcast(deployerPrivateKey);
+        return _deploy(creationCode, "", salt);
+    }
+
+    /// @dev Allows calling without Forge broadcast
+    function deploy(bytes memory creationCode, bytes memory args, bytes32 salt) internal returns (address) {
+        return _deploy(creationCode, args, salt);
+    }
+
+    /// @dev Allows calling without Forge broadcast
+    function deploy(bytes memory creationCode, bytes32 salt) internal returns (address) {
+        return _deploy(creationCode, "", salt);
+    }
+
+    function _deploy(bytes memory creationCode, bytes memory args, bytes32 salt) private returns (address) {
         bytes memory callData = abi.encodePacked(salt, creationCode, args);
 
         (bool success, bytes memory result) = SAFE_SINGLETON_FACTORY.call(callData);

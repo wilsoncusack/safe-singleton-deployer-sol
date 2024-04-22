@@ -1,0 +1,3 @@
+SafeSingletonDeployerTest:test_deploy_createsAtExpectedAddress() (gas: 113482)
+SafeSingletonDeployerTest:test_deploy_createsContractCorrectly() (gas: 106035)
+SafeSingletonDeployerTest:test_deploy_reverts() (gas: 43784)

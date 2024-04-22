@@ -1,66 +1,7 @@
-## Foundry
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+# Solidity Safe Singleton Factory Deployer 
+This is a Solidity library for using [Safe Singleton Factory](https://github.com/safe-global/safe-singleton-factory). At the code level, this factory matches [Arachnid's Determinstic Deployment Proxy](https://github.com/Arachnid/deterministic-deployment-proxy). It is different from other deterministic deployment factories in that Safe holds the private key and has NOT shared any presigned transactions. This can help avoid accidental or malicious nonce increments via presigned transactions with invalid gas values for a certain network. 
 
-Foundry consists of:
+Safe has currently deployed this factory to 252 chains and it has the same address on 248. 
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+I made this library so that this factory would be easiser to use with Forge deployment scripts, as there seem to only be existing tools for Hardhat. 

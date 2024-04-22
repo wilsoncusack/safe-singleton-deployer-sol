@@ -5,3 +5,5 @@ This is a Solidity library for using [Safe Singleton Factory](https://github.com
 Safe has currently deployed this factory to 252 chains and it has the same address on 248. 
 
 I made this library so that this factory would be easiser to use with Forge deployment scripts, as there seem to only be existing tools for Hardhat. 
+
+Example usage in [`ExampleDeploy.s.sol`](https://github.com/wilsoncusack/safe-singleton-deployer-sol/blob/main/scripts/ExampleDeploy.s.sol)

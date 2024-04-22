@@ -8,8 +8,10 @@ import {Mock} from "../test/Mock.sol";
 
 contract ExampleDeployScript is Script {
   function run() public {
+    uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+
     SafeSingletonDeployer.broadcastDeploy({
-      deployer: address(1),
+      deployerPrivateKey: deployerPrivateKey,
       creationCode: type(Mock).creationCode,
       args: abi.encode(1),
       salt: bytes32("0x1234")

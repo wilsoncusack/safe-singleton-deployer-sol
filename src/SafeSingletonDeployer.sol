@@ -23,6 +23,16 @@ library SafeSingletonDeployer {
         });
     }
 
+    function broadcastDeploy(bytes memory creationCode, bytes memory args, bytes32 salt) internal returns (address) {
+        VM.broadcast();
+        return _deploy(creationCode, args, salt);
+    }
+
+    function broadcastDeploy(bytes memory creationCode, bytes32 salt) internal returns (address) {
+        VM.broadcast();
+        return _deploy(creationCode, "", salt);
+    }
+
     function broadcastDeploy(address deployer, bytes memory creationCode, bytes memory args, bytes32 salt)
         internal
         returns (address)
